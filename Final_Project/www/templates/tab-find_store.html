@@ -1,0 +1,32 @@
+<ion-view  view-title="Find Store">
+
+<ion-content>
+
+  <div class="list">
+
+    <div class="item item-input-inset">
+      <label class="item-input-wrapper">
+        <input type="search" placeholder="Search with city" ng-model="city">
+      </label>
+      <button class="button button-small" ng-click="findLocation(city)">
+        Submit
+      </button>
+    </div>
+
+  </div>
+
+
+  <div class="list card" ng-repeat="stores in details ">
+
+    <div class="item ">
+
+
+      <h2>Name:     {{stores.name}}</h2>
+  <h2>Name:     {{stores.address}}</h2>
+  <h2>Name:     {{stores.hours}}</h2>
+      <h3>Sale Price:{{stores.phone}}</h3>
+    </div>
+    </div>
+
+</ion-content>
+</ion-view>

@@ -5,7 +5,12 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic','satellizer','LocalStorageModule','ngCordova','starter.controllers',
+  'starter.services','starter.Searchcontrollers','starter.Searchservice','starter.Storecontrollers','starter.Storeservice',
+    'starter.Logcontrollers','starter.Logservice'])
+
+    .constant('authKey','myAuthToken')
+    .constant('authApi','http://localhost:8100/#/')
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -23,8 +28,68 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+  .config(['$provide', function ($provide) {
 
+    $provide.decorator('$log', ['$delegate', function ($delegate) {
+      // Keep track of the original debug method, we'll need it later.
+      var origDebug = $delegate.debug;
+
+      var getmyerror = $delegate.getmyerror;
+
+      /*
+       * Intercept the call to $log.debug() so we can add on
+       * our enhancement. We're going to add on a date and
+       * time stamp to the message that will be logged.
+       */
+      $delegate.error = function (Fetch_Error) {
+        var args = [].slice.call(arguments);
+        console.log(args);
+        args[0] = [new Date().toString(), ': ',args[0]].join('');
+
+        if (localStorage.getItem("test")!=null)
+        {
+          var listError = JSON.parse(localStorage.getItem("test"));
+        }
+
+          if (!listError) {
+            listError = [];
+          }
+
+          var item = {};
+          item.errormsg = args[0];
+
+          listError.push(item);
+        localStorage.setItem("test", JSON.stringify(listError));
+
+
+          // Send on our enhanced message to the original debug method.
+          origDebug.apply(null, args);
+
+      };
+
+      $delegate.getmyerror=function()
+      {
+        return localStorage.getItem("test");
+
+      };
+
+      return $delegate;
+    }]);
+  }])
+
+
+    //.config(function (localStorageServiceProvider) {
+    //  localStorageServiceProvider
+    //      .setPrefix('Error')
+    //      .setNotify(true, true)
+    //})
+
+
+.config(function($stateProvider, $urlRouterProvider,localStorageServiceProvider,$httpProvider,$authProvider) {
+
+  //$httpProvider.interceptors.push('TokenInterceptor');
+  //$httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
+  localStorageServiceProvider.setPrefix('pate0357');
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
@@ -35,51 +100,48 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
+    templateUrl: 'templates/tabs.html',
+      controller: 'AppCtrl'
   })
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.Serch', {
+    url: '/Serch',
     views: {
       'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+        templateUrl: 'templates/tab-serch.html',
+        controller: 'SerchCtrl'
       }
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.find_store', {
+      url: '/find_store',
       views: {
         'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+          templateUrl: 'templates/tab-find_store.html',
+          controller: 'find_storeCtrl'
         }
       }
     })
 
-  .state('tab.account', {
-    url: '/account',
+
+  .state('tab.Log', {
+    url: '/Log',
     views: {
       'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+        templateUrl: 'templates/tab-Log.html',
+        controller: 'LogCtrl'
       }
     }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/Serch');
 
+  $authProvider.facebook({
+    clientId: '1709670955933687',
+    responseType: 'token'
+  });
 });
