@@ -48,29 +48,32 @@ angular.module('starter.services', [])
         logout: function () {
             localStorageService.remove(authKey);
         },
-        //        social_username: function () {
-        //            var accessToken = localStorageService.get("satellizer_token");
-        //
-        //            $http.get("https://graph.facebook.com/v2.2/me", {
-        //                params: {
-        //                    access_token: accessToken,
-        //                    fields: "id,name,picture",
-        //                    format: "json"
-        //                }
-        //            }).
-        //            then(function (result) {
-        //                var profileData = result.data.name;
-        //                console.log(profileData.name);
-        //
-        //
-        //                //                return result.data.picture.data.url;
-        //
-        //            }, function (error) {
-        //                alert("There was a problem getting your profile.");
-        //                console.log(error);
-        //            });
-        //
-        //        }
+        social_username: function (token) {
+            //            var accessToken = localStorageService.get("satellizer_token");
+
+            $http.get("https://graph.facebook.com/v2.2/me", {
+                params: {
+                    access_token: token,
+                    fields: "id,name,picture",
+                    format: "json"
+                }
+            }).
+            then(function (result) {
+                var profileData = result.data.name;
+                $ionicPopup.alert({
+                    title: 'Welcome',
+                    content: 'You have successfully logged in!' + profileData
+                });
+
+
+                //                return result.data.picture.data.url;
+
+            }, function (error) {
+                alert("There was a problem getting your profile.");
+                console.log(error);
+            });
+
+        }
     }
 
 });

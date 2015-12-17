@@ -18,13 +18,7 @@ angular.module('starter.Logcontrollers', [])
                     content: $scope.loginData.username
                 });
             }
-            //            else {
-            //                $ionicPopup.alert({
-            //                    title: 'Welcome',
-            //                    content: $scope.loginData.username
-            //                });
-            //
-            //            }
+
             var x = window.localStorage.getItem("test");
             $scope.Error = JSON.parse(x);
 

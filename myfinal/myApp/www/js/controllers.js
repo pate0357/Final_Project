@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 
 //this for login when app start.
-.controller('AppCtrl', function ($scope, $ionicModal, $timeout, $auth, $ionicPopup, AuthFactory, $rootScope, $window) {
+.controller('AppCtrl', function ($scope, $ionicModal, $timeout, $auth, $ionicPopup, AuthFactory, $rootScope, $window, localStorageService, $http) {
 
     $rootScope.LoggedIn = function () {
         return AuthFactory.isLogged();
@@ -43,12 +43,12 @@ angular.module('starter.controllers', [])
         $scope.authenticate = function (provider) {
             $auth.authenticate(provider)
                 .then(function (data) {
-                    //                    AuthFactory.social_username();
-                    $ionicPopup.alert({
-                        title: 'Success',
-                        content: 'You have successfully logged in!'
-                    });
-
+                    console.log(data.access_token);
+                    AuthFactory.social_username(data.access_token);
+//                    $ionicPopup.alert({
+            //                        title: 'Success',
+            //                        content: 'You have successfully logged in!'
+            //                    });
                     $scope.modal.hide();
 
                 })
@@ -67,6 +67,7 @@ angular.module('starter.controllers', [])
 
         $scope.isAuthenticated = function () {
             return $auth.isAuthenticated();
+
         };
 
 
@@ -112,29 +113,6 @@ angular.module('starter.controllers', [])
         $auth.logout();
         $window.location.reload();
     };
-    $rootScope.social_username = function () {
-        var accessToken = localStorageService.get("satellizer_token");
-
-        $http.get("https://graph.facebook.com/v2.2/me", {
-            params: {
-                access_token: accessToken,
-                fields: "id,name,picture",
-                format: "json"
-            }
-        }).
-        then(function (result) {
-            var profileData = result.data.name;
-            console.log(profileData.name);
-            $scope.getname = profileData;
-
-            //                return result.data.picture.data.url;
-
-        }, function (error) {
-            alert("There was a problem getting your profile.");
-            console.log(error);
-        });
-
-    }
 
 
 

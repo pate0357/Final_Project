@@ -11,49 +11,13 @@ angular.module('starter.Storecontrollers', [])
         $rootScope.$broadcast('showLoginModal', $scope, null, function () {
 
             if ($auth.isAuthenticated() == false) {
-
+                console.log($auth.isAuthenticated());
                 $ionicPopup.alert({
                     title: 'Welcome',
                     content: $scope.loginData.username
                 });
 
-            } else {
-
-                var accessToken = localStorageService.get("satellizer_token");
-
-                $http.get("https://graph.facebook.com/v2.2/me", {
-                    params: {
-                        access_token: accessToken,
-                        fields: "id,name,picture",
-                        format: "json"
-                    }
-                }).
-                then(function (result) {
-                    var profileData = result.data.name;
-                    console.log(profileData.name);
-                    $scope.getname = profileData;
-
-                    //                return result.data.picture.data.url;
-
-                }, function (error) {
-                    alert("There was a problem getting your profile.");
-                    console.log(error);
-                });
-
-                $ionicPopup.alert({
-                    title: 'Welcome',
-                    content: $scope.getname
-                });
-
-
             }
-
-
-            //            var getname = AuthFactory.social_username();
-            //            console.log(getname);
-
-
-
             //call it here
             var posOptions = {
                 timeout: 10000,

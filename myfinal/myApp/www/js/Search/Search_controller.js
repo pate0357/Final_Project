@@ -16,11 +16,6 @@ angular.module('starter.Searchcontrollers', [])
                     title: 'Welcome',
                     content: $scope.loginData.username
                 });
-            } else {
-                $ionicPopup.alert({
-                    title: 'Welcome',
-                    content: $scope.getName
-                });
             }
 
             $scope.addThing = function (search) {
