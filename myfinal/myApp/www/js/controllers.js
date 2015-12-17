@@ -45,10 +45,7 @@ angular.module('starter.controllers', [])
                 .then(function (data) {
                     console.log(data.access_token);
                     AuthFactory.social_username(data.access_token);
-//                    $ionicPopup.alert({
-            //                        title: 'Success',
-            //                        content: 'You have successfully logged in!'
-            //                    });
+
                     $scope.modal.hide();
 
                 })
