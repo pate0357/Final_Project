@@ -1,21 +1,20 @@
+<ion-view view-title="Log">
 
-<ion-view  view-title="Log">
-
-  <ion-content>
-
+    <ion-content>
 
 
-    <div class="list card" ng-repeat="errormsg in Error ">
 
-      <div class="item ">
+        <div class="list card" ng-repeat="errormsg in Error ">
+
+            <div class="item item-text-wrap ">
 
 
-        <h2>Name</h2>
+                <h2>Error:</h2>
 
-        <h2>{{errormsg.errormsg}}</h2>
+                <h2>{{errormsg.errormsg}}</h2>
 
-      </div>
-    </div>
+            </div>
+        </div>
 
-  </ion-content>
+    </ion-content>
 </ion-view>

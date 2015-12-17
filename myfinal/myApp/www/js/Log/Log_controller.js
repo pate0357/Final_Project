@@ -6,11 +6,25 @@ angular.module('starter.Logcontrollers', [])
 
 
 
-.controller('LogCtrl', function ($scope, AuthFactory, $rootScope, $log, localStorageService) {
+.controller('LogCtrl', function ($scope, AuthFactory, $rootScope, $log, $auth, localStorageService, $ionicPopup) {
 
 
     if (AuthFactory.isLogged() == false) {
         $rootScope.$broadcast('showLoginModal', $scope, null, function () {
+
+            if ($auth.isAuthenticated() == false) {
+                $ionicPopup.alert({
+                    title: 'Welcome',
+                    content: $scope.loginData.username
+                });
+            }
+            //            else {
+            //                $ionicPopup.alert({
+            //                    title: 'Welcome',
+            //                    content: $scope.loginData.username
+            //                });
+            //
+            //            }
             var x = window.localStorage.getItem("test");
             $scope.Error = JSON.parse(x);
 

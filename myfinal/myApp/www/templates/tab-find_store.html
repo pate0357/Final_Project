@@ -8,8 +8,8 @@
                 <label class="item-input-wrapper">
                     <input type="search" placeholder="Search with city" ng-model="city">
                 </label>
-                <button class="button button-small" ng-click="findLocation(city)">
-                    Submit
+                <button class="button button-small button-dark" ng-click="findLocation(city)">
+                    Search
                 </button>
             </div>
 
@@ -18,7 +18,7 @@
 
         <div class="list card" ng-repeat="stores in details ">
 
-            <div class="item ">
+            <div class="item item-text-wrap">
 
 
                 <h2>Name:     {{stores.name}}</h2>

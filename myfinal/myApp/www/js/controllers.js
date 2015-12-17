@@ -27,12 +27,12 @@ angular.module('starter.controllers', [])
         });
 
         // Triggered in the login modal to close it
-        $scope.closeLogin = function () {
-            $scope.modal.hide();
-            if (typeof cancelCallback === 'function') {
-                cancelCallback();
-            }
-        };
+        //        $scope.closeLogin = function () {
+        //            $scope.modal.hide();
+        //            if (typeof cancelCallback === 'function') {
+        //                cancelCallback();
+        //            }
+        //        };
 
         // Open the login modal
         $scope.login = function () {
@@ -43,12 +43,12 @@ angular.module('starter.controllers', [])
         $scope.authenticate = function (provider) {
             $auth.authenticate(provider)
                 .then(function (data) {
-                    AuthFactory.social_username();
-
+                    //                    AuthFactory.social_username();
                     $ionicPopup.alert({
                         title: 'Success',
                         content: 'You have successfully logged in!'
                     });
+
                     $scope.modal.hide();
 
                 })
@@ -67,13 +67,18 @@ angular.module('starter.controllers', [])
 
         $scope.isAuthenticated = function () {
             return $auth.isAuthenticated();
-
         };
+
+
+
+
 
         // Perform the login action when the user submits the login form
         $scope.doLogin = function () {
-            //console.log(localStorageService.get("satellizer_token"));
+
+
             var validate = AuthFactory.login($scope.loginData.username, $scope.loginData.password);
+
             // Simulate a login delay. Remove this and replace with your login
             // code if using a login system
             if (validate == true) {
@@ -84,17 +89,18 @@ angular.module('starter.controllers', [])
                         //$window.location.reload();
                     }
                 }, 1000);
+
             }
         };
 
 
     });
 
-//    $rootScope.isAuthenticated = function () {
-        //
-        //        return $auth.isAuthenticated();
-        //
-        //    };
+    $rootScope.isAuthenticated = function () {
+
+        return $auth.isAuthenticated();
+
+    };
     $rootScope.loginFromMenu = function () {
         $rootScope.$broadcast('showLoginModal', $scope, null, function () {
             $window.location.reload();
@@ -105,6 +111,31 @@ angular.module('starter.controllers', [])
         AuthFactory.logout();
         $auth.logout();
         $window.location.reload();
+    };
+    $rootScope.social_username = function () {
+        var accessToken = localStorageService.get("satellizer_token");
+
+        $http.get("https://graph.facebook.com/v2.2/me", {
+            params: {
+                access_token: accessToken,
+                fields: "id,name,picture",
+                format: "json"
+            }
+        }).
+        then(function (result) {
+            var profileData = result.data.name;
+            console.log(profileData.name);
+            $scope.getname = profileData;
+
+            //                return result.data.picture.data.url;
+
+        }, function (error) {
+            alert("There was a problem getting your profile.");
+            console.log(error);
+        });
+
     }
+
+
 
 });

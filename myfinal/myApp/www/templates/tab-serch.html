@@ -1,5 +1,7 @@
 <ion-view view-title="Search">
 
+
+
     <ion-content>
 
         <div class="list">
@@ -8,27 +10,19 @@
                 <label class="item-input-wrapper">
                     <input type="search" placeholder="Search" ng-model="search">
                 </label>
-                <button class="button button-small" ng-click="addThing(search)">
-                    Submit
+                <button class="button button-small button-dark" ng-click="addThing(search)">
+                    Search
                 </button>
             </div>
 
         </div>
 
+        <!--        //this is card for showing data from api.-->
 
-        <!--//this is card for showing data from api.-->
-
-
-
-
-
-
-
-
-        <!--         this is showing data from serch api -->
         <div class="list card" ng-repeat="products in details ">
 
-            <div class="item myproduct">
+
+            <div class="item  item-text-wrap">
                 <img ng-src="{{products.image}}">
                 <h2>Name:     {{products.name}}</h2>
                 <h3>Sale Price:{{products.salePrice}}</h3>
@@ -36,24 +30,6 @@
             </div>
 
         </div>
-
-
-
-
-
-        <!--
-        <div class="list" ng-repeat="products in details ">
-
-            <a class="item item-thumbnail-left">
-                <img ng-src="{{products.image}}">
-                <p>Name:{{products.name}}</p>
-                <p>Sale Price:{{products.salePrice}}</p>
-            </a>
-
-
-
-        </div>
--->
 
 
     </ion-content>
