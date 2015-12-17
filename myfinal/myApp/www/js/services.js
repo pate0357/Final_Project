@@ -27,16 +27,16 @@ angular.module('starter.services', [])
                 if (credentials.username == "guest") {
                     $ionicPopup.alert({
                         title: 'Error',
-                        content: 'Please enter another username!'
+                        content: 'Please enter another username except guest!'
                     });
 
-                    $log.error("please enter another username");
+                    $log.error("please enter another username except Guest");
 
                 } else {
-                    $log.error("Please enter password more than 5 character");
+                    $log.error("Please enter password more than 5 character long");
                     $ionicPopup.alert({
                         title: 'Error',
-                        content: 'Please enter another Password!'
+                        content: 'Please enter password more than 5 character long!'
                     });
 
                 }
@@ -62,7 +62,7 @@ angular.module('starter.services', [])
                 var profileData = result.data.name;
                 $ionicPopup.alert({
                     title: 'Welcome',
-                    content: 'You have successfully logged in!' + profileData
+                    content: profileData
                 });
 
 

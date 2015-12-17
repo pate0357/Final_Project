@@ -19,16 +19,20 @@
 
         <!--        //this is card for showing data from api.-->
 
-        <div class="list card" ng-repeat="products in details ">
+        <div class="list card animated bounceInRight item-text-wrap" style="color:green" ng-repeat="products in details ">
 
 
-            <div class="item  item-text-wrap">
-                <img ng-src="{{products.image}}">
-                <h2>Name:     {{products.name}}</h2>
+
+            <div class="item list item-text-wrap">
+                <div style="float:left">
+                    <img ng-src="{{products.image}}">
+                </div>
+                <div style="margin-top:10px">
+                    <h3>Name:     {{products.name}}</h2>
                 <h3>Sale Price:{{products.salePrice}}</h3>
-                <h3>Sku:{{products.sku}}</h3>
+                    <h3>Sku:{{products.sku}}</h3>
+                </div>
             </div>
-
         </div>
 
 

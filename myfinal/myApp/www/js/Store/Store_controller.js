@@ -4,7 +4,7 @@
 angular.module('starter.Storecontrollers', [])
 
 .controller('find_storeCtrl', function ($scope, Fetch_Locatation, AuthFactory, $auth, $rootScope, $cordovaGeolocation, $http, $log, $ionicPopup) {
-    //
+
     //show login model
 
     if (AuthFactory.isLogged() == false) {
@@ -12,10 +12,13 @@ angular.module('starter.Storecontrollers', [])
 
             if ($auth.isAuthenticated() == false) {
                 console.log($auth.isAuthenticated());
-                $ionicPopup.alert({
+                var mypopup = $ionicPopup.alert({
                     title: 'Welcome',
                     content: $scope.loginData.username
                 });
+
+
+
 
             }
             //call it here

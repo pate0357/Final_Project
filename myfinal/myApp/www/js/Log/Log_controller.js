@@ -19,20 +19,12 @@ angular.module('starter.Logcontrollers', [])
                 });
             }
 
-            var x = window.localStorage.getItem("test");
+            var x = localStorage.getItem("test");
             $scope.Error = JSON.parse(x);
-
-            //            var x = $log.getmyerror();
-            //            $scope.Error = JSON.parse(x);
         });
     } else {
         {
-
-            //      $scope.details = localStorage.getItem("test");
-
-            var x = window.localStorage.getItem("test");
-
-            //            var x = $log.getmyerror();
+            var x = localStorage.getItem("test");
             $scope.Error = JSON.parse(x);
         }
     }
