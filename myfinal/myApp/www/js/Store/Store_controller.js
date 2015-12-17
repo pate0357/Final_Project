@@ -17,9 +17,6 @@ angular.module('starter.Storecontrollers', [])
                     content: $scope.loginData.username
                 });
 
-
-
-
             }
             //call it here
             var posOptions = {

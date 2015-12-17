@@ -94,11 +94,11 @@ angular.module('starter.controllers', [])
 
     });
 
-    $rootScope.isAuthenticated = function () {
-
-        return $auth.isAuthenticated();
-
-    };
+    //    $rootScope.isAuthenticated = function () {
+    //
+    //        return $auth.isAuthenticated();
+    //
+    //    };
     $rootScope.loginFromMenu = function () {
         $rootScope.$broadcast('showLoginModal', $scope, null, function () {
             $window.location.reload();
@@ -106,8 +106,12 @@ angular.module('starter.controllers', [])
     };
     $rootScope.logoutFromMenu = function () {
 
+
         AuthFactory.logout();
+
         $auth.logout();
+
+
         $window.location.reload();
     };
 

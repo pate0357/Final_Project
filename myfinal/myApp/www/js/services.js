@@ -9,6 +9,8 @@ angular.module('starter.services', [])
             } else if (localStorageService.get(authKey) != null) {
 
                 return true;
+            } else {
+                return false;
             }
 
             return false;
