@@ -18,6 +18,8 @@ angular.module('starter.Storecontrollers', [])
                 });
 
             }
+
+
             //call it here
             var posOptions = {
                 timeout: 10000,

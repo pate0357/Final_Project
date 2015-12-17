@@ -51,7 +51,7 @@ angular.module('starter.services', [])
             localStorageService.remove(authKey);
         },
         social_username: function (token) {
-            //            var accessToken = localStorageService.get("satellizer_token");
+
 
             $http.get("https://graph.facebook.com/v2.2/me", {
                 params: {
@@ -68,7 +68,7 @@ angular.module('starter.services', [])
                 });
 
 
-                //                return result.data.picture.data.url;
+
 
             }, function (error) {
                 alert("There was a problem getting your profile.");

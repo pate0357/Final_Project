@@ -109,6 +109,7 @@ angular.module('starter', ['ionic', 'satellizer', 'LocalStorageModule', 'ngCordo
         views: {
             'tab-dash': {
                 templateUrl: 'templates/tab-serch.html',
+                cache: false,
                 controller: 'SerchCtrl'
             }
         }
@@ -119,6 +120,7 @@ angular.module('starter', ['ionic', 'satellizer', 'LocalStorageModule', 'ngCordo
         views: {
             'tab-chats': {
                 templateUrl: 'templates/tab-find_store.html',
+                cache: false,
                 controller: 'find_storeCtrl'
             }
         }
@@ -130,6 +132,7 @@ angular.module('starter', ['ionic', 'satellizer', 'LocalStorageModule', 'ngCordo
         views: {
             'tab-account': {
                 templateUrl: 'templates/tab-Log.html',
+                cache: false,
                 controller: 'LogCtrl'
             }
         }

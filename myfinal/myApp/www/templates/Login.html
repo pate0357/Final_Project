@@ -6,7 +6,8 @@
         </div>
     </ion-header-bar>
     <ion-content>
-        <form ng-submit="doLogin()">
+        <form>
+
             <div class="list">
                 <label class="item item-input">
                     <span class="input-label">Username</span>
@@ -17,22 +18,14 @@
                     <input type="password" ng-model="loginData.password" required="required">
                 </label>
                 <label class="item">
-                    <button class="button button-block button-positive" type="submit">Log in</button>
+                    <button class="button button-block button-positive" ng-click="doLogin()">Log in</button>
                 </label>
             </div>
-
         </form>
-        <div class="card">
-            <div ng-if="!isAuthenticated()">
-                <label style="color:red" class="item item-text-wrap item-input">You are NOT Logged In Facebook!</label>
-            </div>
-            <div ng-if="isAuthenticated()">
-                <label style="color:green" class="item item-text-wrap item-input">You are Logged In Facebook!</label>
-            </div>
-        </div>
+
         <div class="item">
             <button class="button button-block button-positive" ng-if="!isAuthenticated()" ng-click="authenticate('facebook')">Login in with Facebook</button>
-            <button class="button button-block button-assertive" ng-if="isAuthenticated()" ng-click="logout()">Log Out</button>
+
         </div>
 
     </ion-content>

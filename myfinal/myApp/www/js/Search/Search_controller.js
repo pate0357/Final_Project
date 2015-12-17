@@ -18,6 +18,8 @@ angular.module('starter.Searchcontrollers', [])
                 });
             }
 
+
+
             $scope.addThing = function (search) {
 
                 Fetch_product.fetch(search).then(function (getdata) {

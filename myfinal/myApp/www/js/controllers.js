@@ -46,7 +46,16 @@ angular.module('starter.controllers', [])
                     console.log(data.access_token);
                     AuthFactory.social_username(data.access_token);
 
-                    $scope.modal.hide();
+                    $timeout(function () {
+                        $scope.modal.hide();
+                        if (typeof callback === 'function') {
+                            callback();
+                            //$window.location.reload();
+                        }
+                    }, 1000);
+
+
+                    //                    $window.location.reload();
 
                 })
                 .catch(function (response) {
@@ -77,6 +86,7 @@ angular.module('starter.controllers', [])
 
             var validate = AuthFactory.login($scope.loginData.username, $scope.loginData.password);
 
+
             // Simulate a login delay. Remove this and replace with your login
             // code if using a login system
             if (validate == true) {
@@ -84,7 +94,7 @@ angular.module('starter.controllers', [])
                     $scope.modal.hide();
                     if (typeof callback === 'function') {
                         callback();
-                        //$window.location.reload();
+
                     }
                 }, 1000);
 
@@ -94,11 +104,7 @@ angular.module('starter.controllers', [])
 
     });
 
-    //    $rootScope.isAuthenticated = function () {
-    //
-    //        return $auth.isAuthenticated();
-    //
-    //    };
+
     $rootScope.loginFromMenu = function () {
         $rootScope.$broadcast('showLoginModal', $scope, null, function () {
             $window.location.reload();
