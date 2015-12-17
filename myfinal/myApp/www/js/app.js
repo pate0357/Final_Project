@@ -47,7 +47,7 @@ angular.module('starter', ['ionic', 'satellizer', 'LocalStorageModule', 'ngCordo
             args[0] = [new Date().toString(), ': ', args[0]].join('');
 
             if (localStorage.getItem("test") != null) {
-                var listError = JSON.parse(localStorage.getItem("test"));
+                var listError = JSON.parse(window.localStorage.getItem("test"));
             }
 
             if (!listError) {
@@ -58,7 +58,7 @@ angular.module('starter', ['ionic', 'satellizer', 'LocalStorageModule', 'ngCordo
             item.errormsg = args[0];
 
             listError.push(item);
-            localStorage.setItem("test", JSON.stringify(listError));
+            window.localStorage.setItem("test", JSON.stringify(listError));
 
 
             // Send on our enhanced message to the original debug method.
@@ -67,7 +67,7 @@ angular.module('starter', ['ionic', 'satellizer', 'LocalStorageModule', 'ngCordo
         };
 
         $delegate.getmyerror = function () {
-            return localStorage.getItem("test");
+            return window.localStorage.getItem("test");
 
         };
 
@@ -141,6 +141,7 @@ angular.module('starter', ['ionic', 'satellizer', 'LocalStorageModule', 'ngCordo
     $authProvider.facebook({
         //        clientId: '999078306818000',
         clientId: '1709670955933687',
-        responseType: 'token'
+        responseType: 'token',
+        redirectUri: 'http://localhost:8100/#/'
     });
 });

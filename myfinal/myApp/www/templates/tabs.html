@@ -5,30 +5,30 @@ navigation history that also transitions its views in and out.
 -->
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
-  <!-- Dashboard Tab -->
-  <ion-tab title="Search" icon-off=" ion-ios-search" icon-on=" ion-ios-search" href="#/tab/Serch">
-    <ion-nav-view name="tab-dash"></ion-nav-view>
-  </ion-tab>
+    <!-- search Tab -->
+    <ion-tab title="Search" icon-off=" ion-ios-search" icon-on=" ion-ios-search" href="#/tab/Serch">
+        <ion-nav-view name="tab-dash"></ion-nav-view>
+    </ion-tab>
 
-  <!-- Chats Tab -->
-  <ion-tab title="Find Store" icon-off="ion-briefcase" icon-on="ion-briefcase" href="#/tab/find_store">
-    <ion-nav-view name="tab-chats"></ion-nav-view>
-  </ion-tab>
+    <!-- find store Tab -->
+    <ion-tab title="Find Store" icon-off="ion-briefcase" icon-on="ion-briefcase" href="#/tab/find_store">
+        <ion-nav-view name="tab-chats"></ion-nav-view>
+    </ion-tab>
 
-  <!-- Account Tab -->
-  <ion-tab title="Logs" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/Log">
-    <ion-nav-view name="tab-account"></ion-nav-view>
-  </ion-tab>
+    <!-- log Tab -->
+    <ion-tab title="Logs" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/Log">
+        <ion-nav-view name="tab-account"></ion-nav-view>
+    </ion-tab>
 
-  <ion-tab title="Login" ng-if="!LoggedIn()" ng-click="loginFromMenu()"  icon-off="ion-ios-gear-outline" icon-on="ion-ios-login" href="">
-  <!--<ion-item  ">-->
-    Login
-  <!--</ion-item>-->
-  </ion-tab>
-  <ion-tab title="Logout" ng-if="LoggedIn()" ng-click="logoutFromMenu()" icon-off="ion-ios-gear-outline" icon-on="ion-ios-login" href="">
-  <!--<ion-item   ng-show="LoggedIn()" ng-click="logoutFromMenu()">-->
-    Logout
-  <!--</ion-item>-->
-</ion-tab>
+    <ion-tab title="Login" ng-if="!LoggedIn()" ng-click="loginFromMenu()" icon-off="ion-ios-gear-outline" icon-on="ion-ios-login" href="">
+        <!--<ion-item  ">-->
+        Login
+        <!--</ion-item>-->
+    </ion-tab>
+    <ion-tab title="Logout" ng-if="LoggedIn()" ng-click="logoutFromMenu()" icon-off="ion-ios-gear-outline" icon-on="ion-ios-login" href="">
+        <!--<ion-item   ng-show="LoggedIn()" ng-click="logoutFromMenu()">-->
+        Logout
+        <!--</ion-item>-->
+    </ion-tab>
 
 </ion-tabs>

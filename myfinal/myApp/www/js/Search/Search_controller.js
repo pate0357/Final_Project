@@ -3,41 +3,38 @@
  */
 angular.module('starter.Searchcontrollers', [])
 
-  .controller('SerchCtrl', function($scope,AuthFactory,$rootScope,Fetch_product,$http,$log) {
+.controller('SerchCtrl', function ($scope, AuthFactory, $rootScope, Fetch_product, $http, $log) {
 
-//to check if user login or not
+    //to check if user login or not
 
-    if(AuthFactory.isLogged() == false ){
-      $rootScope.$broadcast('showLoginModal', $scope, null, function()
-      {
+    if (AuthFactory.isLogged() == false) {
+        $rootScope.$broadcast('showLoginModal', $scope, null, function () {
 
+
+            $scope.addThing = function (search) {
+
+                Fetch_product.fetch(search).then(function (getdata) {
+
+                    $scope.details = getdata.data.products;
+
+                });
+                $log.error("Welcome to home");
+            };
+
+        });
+    } else {
 
         $scope.addThing = function (search) {
 
-          Fetch_product.fetch(search).then(function(getdata) {
-            $scope.details = getdata.data.products;
+            Fetch_product.fetch(search).then(function (getdata) {
+                $scope.details = getdata.data.products;
 
-          });
-          $log.error("This is error");
+            });
+
+            $log.debug("Already login");
+
         };
 
-      });
-    }
-
-    else
-    {
-
-      $scope.addThing = function (search) {
-
-        Fetch_product.fetch(search).then(function(getdata) {
-          $scope.details = getdata.data.products;
-
-        });
-
-        $log.debug("Already login");
-
-      };
-
     }
 
 
@@ -47,4 +44,4 @@ angular.module('starter.Searchcontrollers', [])
 
 
 
-  });
+});

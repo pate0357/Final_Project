@@ -11,7 +11,7 @@ angular.module('starter.Logcontrollers', [])
 
     if (AuthFactory.isLogged() == false) {
         $rootScope.$broadcast('showLoginModal', $scope, null, function () {
-            var x = localStorage.getItem("test");
+            var x = window.localStorage.getItem("test");
             $scope.Error = JSON.parse(x);
 
             //            var x = $log.getmyerror();
@@ -22,7 +22,7 @@ angular.module('starter.Logcontrollers', [])
 
             //      $scope.details = localStorage.getItem("test");
 
-            var x = localStorage.getItem("test");
+            var x = window.localStorage.getItem("test");
 
             //            var x = $log.getmyerror();
             $scope.Error = JSON.parse(x);
